@@ -1,0 +1,2 @@
+export const RECOMMEND_LIST = 'RECOMMEND_LIST'
+// export const ENTER_LOADING = 'ENTER_LOADING'

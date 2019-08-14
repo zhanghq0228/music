@@ -1,8 +1,6 @@
 import React from 'react'
-function Search (props){
-  const {route} = props
-  return(
-    <div>这是 div</div>
-  )
+
+function Search(props) {
+  return <div> 搜索 </div>
 }
 export default Search

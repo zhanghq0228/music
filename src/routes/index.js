@@ -1,18 +1,10 @@
 import React, { lazy, Suspense } from 'react'
-import { Redirect } from 'react-router-config'
+import { Redirect } from 'react-router-dom'
 const HomeComponent = lazy(() => import('../application/Home/'))
 const Home = props => {
   return (
     <Suspense fallback={null}>
       <HomeComponent {...props} />
-    </Suspense>
-  )
-}
-const LeaderboardComponent = lazy(() => import('../application/Leaderboard/'))
-const Leaderboard = props => {
-  return (
-    <Suspense fallback={null}>
-      <LeaderboardComponent {...props} />
     </Suspense>
   )
 }
@@ -24,6 +16,14 @@ const Recommend = props => {
     </Suspense>
   )
 }
+const LeaderboardComponent = lazy(() => import('../application/Leaderboard/'))
+const Leaderboard = props => {
+  return (
+    <Suspense fallback={null}>
+      <LeaderboardComponent {...props} />
+    </Suspense>
+  )
+}
 const SearchComponent = lazy(() => import('../application/Search/'))
 const Search = props => {
   return (
@@ -32,38 +32,34 @@ const Search = props => {
     </Suspense>
   )
 }
-
 export default [
   {
     path: '/',
     component: Home,
-    routes:[
+    routrs: [
       {
-        path: "/",
+        path: '/',
         exact: true,
-        render:  ()=> (
-          <Redirect to={"/recommend"}/>
-        )
+        render: () => <Redirect to={'/recommend'} />
       },
       {
-        path: "/recommend/",
-        extra: true,
+        path: '/recommend/',
+        exact: true,
         key: 'home',
-        component: Recommend,
-        routes:[{
-          path: '/recommend/:id',
-          component: Album,
-        }]
+        component: Recommend
       },
       {
-        path: "/singers",
-        component: Singers,
-        key: 'singers',
-        routes: [{
-          path: "/singers/:id",
-          component: Singer
-        }]
+        path: '/leaderboard',
+        key: 'leaderboard',
+        exact: true,
+        component: Leaderboard
       },
+      {
+        path: '/search',
+        key: 'search',
+        exact: true,
+        component: Search
+      }
     ]
   }
 ]

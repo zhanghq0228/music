@@ -1,13 +1,37 @@
-import React, { Component } from 'react'
+import React, {
+  useEffect
+} from 'react'
+import {
+  connect
+} from 'react-redux'
+import * as actionTypes from './store/actionCreate'
 
-export class index extends Component {
-  render() {
-    return (
-      <div>
-        这是排行榜
-      </div>
-    )
-  }
+function Recommend(props) {
+  console.log(props)
+  const {
+    getBannerDispatch
+  } = props
+  const {
+    recommend
+  } = props
+  useEffect(() => {
+    getBannerDispatch()
+  }, [getBannerDispatch])
+  return <div / >
 }
 
-export default index
+const mapDispatchToProps = dispatch => {
+  return {
+    getBannerDispatch() {
+      dispatch(actionTypes.getRecommendList())
+    }
+  }
+}
+export default connect(
+  state => {
+    return {
+      recommend: state.recommend
+    }
+  },
+  mapDispatchToProps
+)(Recommend)

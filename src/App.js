@@ -1,22 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import Home from "./application/Home";
-import Recommend from "./application/Recommend";
-import Leaderboard from "./application/Leaderboard";
-import Search from "./application/Search"
-;
+import React from 'react'
+import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import routes from './routes/'
+import store from './store/index'
+import { GlobalStyl } from './style'
+import { IconStyle } from './assets/incoFont/iconfont'
 function App() {
   return (
-    <div className ="App">
-      <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/recommend" component={Recommend} />
-        <Route path="/leaderboard" component={Leaderboard} />
-        <Route path="/search" component={Search} />
-      </Router>
-    </div>
-  );
+    <Provider store={store}>
+      <div className="App">
+        <GlobalStyl />
+        <IconStyle />
+        <HashRouter>{renderRoutes(routes)}</HashRouter>
+      </div>
+    </Provider>
+  )
 }
 
-export default App;
+export default App
