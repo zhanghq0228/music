@@ -1,0 +1,26 @@
+import styled from 'styled-components'
+import style from '../../assets/global-style'
+
+export const SliderContainer = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background: white;
+  .slider-container {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+    margin: auto;
+    .slider-nav {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-pagination-bullet-active {
+      background: ${style['theme-color']};
+    }
+  }
+`
